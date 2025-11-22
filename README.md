@@ -85,7 +85,7 @@ F --> B
 
  👩‍💻 Authors
 
-**Pavni Singh
+**Pavni Singh &
 Kumkum Chauhan**
 
 ---
