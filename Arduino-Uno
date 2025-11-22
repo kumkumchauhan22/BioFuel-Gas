@@ -1,0 +1,71 @@
+#include <LiquidCrystal.h>
+
+// LCD pin connections: RS, EN, D4, D5, D6, D7
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+// Sensor pins
+int mq135 = A0;
+int mq7   = A1;
+int mq4   = A2;
+
+// Buzzer pin
+int buzzer = 8;
+
+void setup() {
+  // LCD begin
+  lcd.begin(16, 2);
+
+  // Welcome message
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(" Welcome to ");
+  lcd.setCursor(0, 1);
+  lcd.print("Pavni's Project");
+  delay(2500);
+
+  lcd.clear();
+  lcd.print("Initializing..");
+  delay(2000);
+
+  // Pin modes
+  pinMode(buzzer, OUTPUT);
+  digitalWrite(buzzer, LOW);
+
+  lcd.clear();
+  lcd.print("Testing Sensors");
+  delay(2000);
+}
+
+void loop() {
+
+  // Read sensors
+  int val135 = analogRead(mq135);
+  int val7   = analogRead(mq7);
+  int val4   = analogRead(mq4);
+
+  lcd.clear();
+
+  // --------- LINE 1 ----------
+  lcd.setCursor(0,0);
+  lcd.print("AQ:");
+  lcd.print(val135);
+
+  lcd.setCursor(9,0);
+  lcd.print("CO:");
+  lcd.print(val7);
+
+  // --------- LINE 2 ----------
+  lcd.setCursor(0,1);
+  lcd.print("Methane Gas:");
+  lcd.print(val4);
+
+  // ----- ALERT LOGIC -----
+  // If any sensor detects smoke → buzzer ON
+  if (val135 > 400 || val7 > 400 || val4 > 400) {
+    digitalWrite(buzzer, HIGH);
+  } else {
+    digitalWrite(buzzer, LOW);
+  }
+
+  delay(350);
+}
