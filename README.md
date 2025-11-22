@@ -100,7 +100,7 @@ Open for improvement and educational use.
 
 If you want to collaborate or improve this system:
 
-📧 pavnisingh
+📧 [singhpavni2006@gmail.com]
 📧 [kumkumchauhan32625@gmail.com]
 
 ---
